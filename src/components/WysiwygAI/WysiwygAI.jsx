@@ -39,9 +39,25 @@ function WysiwygAI({content, setContent, handleClose}) {
 
   }
 
-  const handleFullScreen = () => {};
+  const handleFullScreen = () => setFullsize(true);
 
-  const handleExitFullScreen = () => {}
+  const handleExitFullScreen = () => setFullsize(false);
+
+  /**
+   * Toggle display of fullScreen / exitFullScreen buttons
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      const classToDisable = fullsize ? '.jodit-toolbar-button_useFullscreen' : '.jodit-toolbar-button_exitFullscreen';
+      const classToEnable = !fullsize ? '.jodit-toolbar-button_useFullscreen' : '.jodit-toolbar-button_exitFullscreen';
+      
+      let el = document.querySelector(classToDisable);
+      if (el && el.style.display !== 'none') el.style.display = 'none';
+
+      el = document.querySelector(classToEnable);
+      if (el && el.style.display !== 'block') el.style.display = 'block';
+    }, 250)
+  })
 
   /**
    * Add buttons and popups
