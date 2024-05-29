@@ -9,31 +9,40 @@ import configPro from './configPro';
 import setBreakPoints from './utils/setBreakPoints';
 import { addCloseButton } from './utils/addCloseButton';
 import groupToButtonList from './utils/groupToButtonList';
+import { addChatButton } from './utils/addChatButton';
 
 function WysiwygAI({content, setContent, handleClose}) {
-    const [ fullsize, setFullsize ] = useState(false);
-    const [ editorInstance, setEditorInstance] = useState(null);
+  const [ fullsize, setFullsize ] = useState(false);
+  const [ editorInstance, setEditorInstance] = useState(null);
 
-    const origButtons = [...Jodit.defaultOptions.buttons];
-    console.log('origButtons', origButtons)
+  const origButtons = [...Jodit.defaultOptions.buttons];
+  console.log('origButtons', origButtons)
 
-    const editor = useRef(null);
+  const editor = useRef(null);
 
-    configPro.events = { 
-     afterInit: (instance) => setEditorInstance(instance)
-    }
-    setBreakPoints(Jodit);
+  configPro.events = { 
+    afterInit: (instance) => setEditorInstance(instance)
+  }
+  setBreakPoints(Jodit);
 
-    const config3 = useMemo(
-        () => (configPro),
-        []
-    );
+  const config3 = useMemo(
+      () => (configPro),
+      []
+  );
+
+  /**
+   * Button Handlers
+   */
+  const handleChat = ({id, command, chatbotId}) => {
+
+  }
 
   /**
    * Add buttons and popups
    */
   useEffect(() => {
     addCloseButton(Jodit, handleClose)
+    addChatButton(Jodit, handleChat);
   })
 
   /**

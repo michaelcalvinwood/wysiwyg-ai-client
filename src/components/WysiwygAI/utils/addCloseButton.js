@@ -7,7 +7,7 @@ export const addCloseButton = (Jodit, handleClose) => {
     const tooltip = "Close";
     const iconURL = settings.svgFolder + "close.svg";
     const exec = function(editor) {
-      handleClose();
+      handleClose(editor);
       return;
     }
     const popup = null;
