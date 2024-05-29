@@ -1,5 +1,17 @@
 .WysiwygAI {
     height: 100vh;
+
+
+    &__jodit {
+        // width: 50vw !important;
+    }
+    &__jodit--fullsize {
+        width: 100vw !important;
+        z-index: 10000 !important;
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
 }
 .jodit-react-container {
     height: 100%;
