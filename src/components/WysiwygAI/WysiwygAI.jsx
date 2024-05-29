@@ -10,6 +10,7 @@ import setBreakPoints from './utils/setBreakPoints';
 import { addCloseButton } from './utils/addCloseButton';
 import groupToButtonList from './utils/groupToButtonList';
 import { addChatButton } from './utils/addChatButton';
+import { addFullScreenButton } from './utils/addFullScreenButton';
 
 function WysiwygAI({content, setContent, handleClose}) {
   const [ fullsize, setFullsize ] = useState(false);
@@ -37,12 +38,15 @@ function WysiwygAI({content, setContent, handleClose}) {
 
   }
 
+  const handleFullScreen = () => {};
+
   /**
    * Add buttons and popups
    */
   useEffect(() => {
     addCloseButton(Jodit, handleClose)
     addChatButton(Jodit, handleChat);
+    addFullScreenButton(Jodit, handleFullScreen);
   })
 
   /**
