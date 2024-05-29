@@ -11,7 +11,7 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
       "mobileView",
       "showBlocks", 
       "|",
-      'flexRows', 'cardLayout', 'addSection', 'cssStyle',
+      //'flexRows', 'cardLayout', 'addSection', 'cssStyle',
       "|", // Group: AI
       "acuraiBrain", "chat", "media", "pasteCode", "seo", 
       "|", 

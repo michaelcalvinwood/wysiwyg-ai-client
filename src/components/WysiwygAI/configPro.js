@@ -53,9 +53,9 @@ const configPro =  {
         "mobileView", "preview", 
         "showBlocks", 
         "|",
-        'flexRows', 'cardLayout', 'addSection', 'cssStyle',
+        //'flexRows', 'cardLayout', 'addSection', 'cssStyle',
         "|", // Group: AI
-        "acuraiBrain", "chat", "media", "pasteCode", "seo", 
+        "acuraiBrain", "chat", "image", "pasteCode", "seo", 
         "|", 
         'table', 'link', 'symbols', 'emoji', 'keyboard', 'pageBreak',  // 
         

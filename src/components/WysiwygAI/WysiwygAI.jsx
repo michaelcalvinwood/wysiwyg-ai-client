@@ -2,15 +2,20 @@ import './WysiwygAi.scss';
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import JoditEditor, { Jodit, Popup } from "jodit-pro-react";
 import configPro from './configPro';
+
 /**
  * Utilities
  */
 import setBreakPoints from './utils/setBreakPoints';
 import { addCloseButton } from './utils/addCloseButton';
+import groupToButtonList from './utils/groupToButtonList';
 
 function WysiwygAI({content, setContent, handleClose}) {
     const [ fullsize, setFullsize ] = useState(false);
     const [ editorInstance, setEditorInstance] = useState(null);
+
+    const origButtons = [...Jodit.defaultOptions.buttons];
+    console.log('origButtons', origButtons)
 
     const editor = useRef(null);
 
@@ -40,6 +45,7 @@ function WysiwygAI({content, setContent, handleClose}) {
       const html = editorInstance.editorDocument.querySelector('html');
       console.log('doc', doc)
     }
+    console.log('button groups', groupToButtonList(editor))
   })
 
   return (
