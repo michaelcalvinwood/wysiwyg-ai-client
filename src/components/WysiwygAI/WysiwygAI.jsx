@@ -11,6 +11,7 @@ import { addCloseButton } from './utils/addCloseButton';
 import groupToButtonList from './utils/groupToButtonList';
 import { addChatButton } from './utils/addChatButton';
 import { addFullScreenButton } from './utils/addFullScreenButton';
+import { addExitFullscreenButton } from './utils/addExitFullScreenButton';
 
 function WysiwygAI({content, setContent, handleClose}) {
   const [ fullsize, setFullsize ] = useState(false);
@@ -40,6 +41,8 @@ function WysiwygAI({content, setContent, handleClose}) {
 
   const handleFullScreen = () => {};
 
+  const handleExitFullScreen = () => {}
+
   /**
    * Add buttons and popups
    */
@@ -47,6 +50,7 @@ function WysiwygAI({content, setContent, handleClose}) {
     addCloseButton(Jodit, handleClose)
     addChatButton(Jodit, handleChat);
     addFullScreenButton(Jodit, handleFullScreen);
+    addExitFullscreenButton(Jodit, handleExitFullScreen)
   })
 
   /**
