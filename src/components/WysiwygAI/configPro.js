@@ -47,7 +47,40 @@ const configPro =  {
     // showPlaceholder: false,
     // placeholder: "Write something awesome",
 
-    // buttons: [...startingButtons], 
+    buttons: [
+        "useFullscreen", "exitFullscreen", // Group: clipboard
+        "source", // Group: 'source'
+        "mobileView", "preview", 
+        "showBlocks", 
+        "|",
+        'flexRows', 'cardLayout', 'addSection', 'cssStyle',
+        "|", // Group: AI
+        "acuraiBrain", "chat", "media", "pasteCode", "seo", 
+        "|", 
+        'table', 'link', 'symbols', 'emoji', 'keyboard', 'pageBreak',  // 
+        
+        {group: 'form', buttons: []},
+        'hr', //  "googleMaps", 
+        "---",
+        "|",
+        "cut", "copy", "paste", "selectall", "copyformat", 
+        "undo", "redo", // "backup.restore"
+        "closeEditor",
+        "\n", 
+        {group: 'color', buttons: []},
+        "bold", "italic", "underline", "strikethrough", "eraser", "changeCase",
+        {group: 'script', buttons: []},    
+        
+        {group: 'list', buttons: []},
+        {group: 'indent', buttons: []},
+        "font", "fontSize", "paragraph", "lineHeight", // "classSpan"
+        "---",
+        "spellCheck",
+        {group: 'search', buttons: []},
+      
+        "print", "wordpress", "download",
+        "---", "deleteProject", "---",        
+    ], 
     // popup: {
     //   "p": [
     //     {
