@@ -2,6 +2,7 @@ import './WysiwygAi.scss';
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import JoditEditor, { Jodit, Popup } from "jodit-pro-react";
 import configPro from './configPro';
+import setBreakPoints from './utils/setBreakPoints';
 
 function WysiwygAI({content, setContent}) {
     const [ fullsize, setFullsize ] = useState(false);
@@ -12,6 +13,7 @@ function WysiwygAI({content, setContent}) {
     configPro.events = { 
      afterInit: (instance) => setEditorInstance(instance)
     }
+    setBreakPoints(Jodit);
 
     const config3 = useMemo(
         () => (configPro),
