@@ -13,7 +13,7 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
       "|",
       //'flexRows', 'cardLayout', 'addSection', 'cssStyle',
       "|", // Group: AI
-      "acuraiBrain", "chat", "media", "pasteCode", "seo", 
+      "chat", "media", "pasteCode",
       "|", 
       'table', 'link', 'emoji', 'keyboard', 'pageBreak', // Group: insert
       {group: 'form', buttons: []},
@@ -27,7 +27,7 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
       "font", "fontSize", "paragraph", "lineHeight", // Group: font (removed "classSpan")
       "---",
       
-      "wordpress",
+
      
         
       "dots"
@@ -36,7 +36,7 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
     Jodit.defaultOptions.buttonsSM = [
         "source", // Group: 'source'
         "|", // Group: AI
-        "acuraiBrain", "chat", "media", "pasteCode", "seo", 
+        "chat", "media", "pasteCode",
         "|", 
         'link', 'emoji', 'keyboard', // Group: insert
         "---",
@@ -47,13 +47,13 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
         {group: 'indent', buttons: []},
         "fontSize", // Group: font (removed "classSpan")
         "---",
-        "wordpress",
+
         "dots"
     ]
 
     Jodit.defaultOptions.buttonsXS = [
     
-     "acuraiBrain",  "chat", "media", "pasteCode", "seo", 
+     "chat", "media", "pasteCode",
       "---", 
       "undo", "redo", // Group history (removed "backup.restore")
      
@@ -62,8 +62,7 @@ const setBreakPoints = (Jodit, sizeSM = 500, sizeMD = 768, sizeLG = 1200) => {
       "bold", "italic", "underline", // Group font-style
      'emoji', // Group: insert
       "---",
-      
-      "wordpress",
+
       "dots"
     ]
 }

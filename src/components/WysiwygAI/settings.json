@@ -1,3 +1,4 @@
 {
-    "JoditLicense": "51B6B-1BGJ1-CBLMM-O1Q7Y"
+    "JoditLicense": "51B6B-1BGJ1-CBLMM-O1Q7Y",
+    "svgFolder": "./src/components/WysiwygAI/svg/"
 }

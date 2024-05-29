@@ -55,7 +55,7 @@ const configPro =  {
         "|",
         //'flexRows', 'cardLayout', 'addSection', 'cssStyle',
         "|", // Group: AI
-        "acuraiBrain", "chat", "image", "pasteCode", "seo", 
+        "chat", "image", "pasteCode", 
         "|", 
         'table', 'link', 'symbols', 'emoji', 'keyboard', 'pageBreak',  // 
         
@@ -78,8 +78,7 @@ const configPro =  {
         "spellCheck",
         {group: 'search', buttons: []},
       
-        "print", "wordpress", "download",
-        "---", "deleteProject", "---",        
+        "print", "download",    
     ], 
     // popup: {
     //   "p": [
