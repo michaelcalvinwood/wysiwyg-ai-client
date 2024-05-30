@@ -1,0 +1,1 @@
+export const changeButtonIcon = (name, iconURL, Jodit) => Jodit.defaultOptions.controls[name].iconURL = iconURL;
