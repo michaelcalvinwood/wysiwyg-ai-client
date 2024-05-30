@@ -16,10 +16,10 @@ export const addChatButton = (Jodit, handleChat) => {
         <button type="submit" style="display:block; padding: .5rem .75rem; width: fit-content; margin: auto">Insert</button>
       </form>`
     );
+    console.log('close', close)
 
     editor.e.on(form, 'submit', (e) => {
       e.preventDefault();
-      console.log('close2', close)
       const command = form.querySelector('textarea').value;
       const select = form.querySelector('select');
       const chatbotId = select.value;
@@ -29,10 +29,10 @@ export const addChatButton = (Jodit, handleChat) => {
       //editor.setEditorValue(editor.editorDocument.body.innerHTML);
       //editor.setEditorValue(`<div id="new">Hello</div>`);
       
-      handleChat({id, command, chatbotId, editor})
-      //alert('done');
-      form.style.display="none";
-      
+      handleChat({id, command, chatbotId, editor, close})
+      const el = document.querySelector('.jodit-toolbar-button_chat');
+      const button = el.querySelector('button');
+      if (el && button) button.click();
     });
 
     return form; 

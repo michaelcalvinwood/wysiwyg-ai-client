@@ -51,6 +51,9 @@ function WysiwygAI({content, setContent, handleClose}) {
     // axios(request)
     // .then(response => response.data.on(hello))
 
+    editor.events.fire('closeAllPopupsAndModals');
+
+
     editor.s.insertHTML(`<div id="${id}"></div>`);
     var currentHtml = editor.getEditorValue();
     setContent(currentHtml);
