@@ -1,0 +1,1 @@
+export const getRegisteredButtons = editor => editor.registeredButtons;
