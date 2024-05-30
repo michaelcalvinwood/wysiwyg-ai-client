@@ -1,0 +1,1 @@
+export const listButtonsForGroup = editor => editor.getRegisteredButtonGroups();
