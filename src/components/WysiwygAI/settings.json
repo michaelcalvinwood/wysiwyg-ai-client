@@ -1,4 +1,5 @@
 {
     "JoditLicense": "51B6B-1BGJ1-CBLMM-O1Q7Y",
-    "svgFolder": "./src/components/WysiwygAI/svg/"
+    "svgFolder": "./src/components/WysiwygAI/svg/",
+    "backend": "https://michaelcalvinwood.net:6325"
 }

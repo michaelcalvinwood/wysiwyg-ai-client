@@ -10,10 +10,10 @@ export const addChatButton = (Jodit, handleChat) => {
   const popup = (editor, current, self, close) => {
     const form = editor.create.fromHTML(
       `<form class='jodit-chat-input'>
-        <select id="chatbotSelect">
+        <select id="chatbotSelect" >
         </select>
-        <textarea rows=5 placeholder="ChatGPT Prompt"></textarea>
-        <button type="submit">Insert</button>
+        <textarea rows=5 placeholder="ChatGPT Prompt" style="width: 30rem; display: block; padding: .5rem 1rem;"></textarea>
+        <button type="submit" style="display:block; padding: .5rem .75rem; width: fit-content; margin: auto">Insert</button>
       </form>`
     );
 
