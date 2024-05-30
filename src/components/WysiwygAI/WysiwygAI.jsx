@@ -15,6 +15,7 @@ import { addChatButton } from './utils/addChatButton';
 import { addFullScreenButton } from './utils/addFullScreenButton';
 import { addExitFullscreenButton } from './utils/addExitFullScreenButton';
 import { joditPrompt } from './utils/prompt';
+import { addDownloadButton } from './utils/addDownloadButton';
 
 function WysiwygAI({content, setContent, handleClose}) {
   const [ fullsize, setFullsize ] = useState(false);
@@ -137,7 +138,8 @@ function WysiwygAI({content, setContent, handleClose}) {
     addCloseButton(Jodit, handleClose)
     addChatButton(Jodit, handleChat);
     addFullScreenButton(Jodit, handleFullScreen);
-    addExitFullscreenButton(Jodit, handleExitFullScreen)
+    addExitFullscreenButton(Jodit, handleExitFullScreen);
+    addDownloadButton(Jodit)
   })
 
   /**

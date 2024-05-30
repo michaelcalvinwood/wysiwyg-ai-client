@@ -2,13 +2,13 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import settings from '../settings.json';
 
-export const htmlToDocx = async (html, login, servers) => {
+export const htmlToDocx = async (html) => {
   const request = {
     url: settings.backend + '/htmlToDocx',
     method: 'post',
     responseType: "arraybuffer",
     data: {
-      html, login
+      html
     }
   }
 

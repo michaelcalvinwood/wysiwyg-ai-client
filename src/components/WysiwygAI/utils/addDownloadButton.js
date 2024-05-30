@@ -25,11 +25,11 @@ ${content}
 
   }
 
-  const downloadWord = async (fileName, html, login, servers) => {
+  const downloadWord = async (fileName, html) => {
     const title = fileName;
     if (!fileName.endsWith('.docx')) fileName += '.docx';
     
-    const docx = await textFormatter.htmlToDocx(html, login, servers);
+    const docx = await textFormatter.htmlToDocx(html);
     console.log('docx', docx);
     fileDownload(docx, fileName);
   }
@@ -58,7 +58,7 @@ ${content}
     const text = htmlToText.convert(html);
     fileDownload(text, fileName)
   }
-  export const addDownloadButton = (Jodit, {login, servers}) => {
+  export const addDownloadButton = (Jodit) => {
     const name = "download";
     const tooltip = "Download";
     const iconURL = './src/assets/images/download.svg';
@@ -80,7 +80,7 @@ ${content}
             downloadHtml(fileName, html);
             break;
           case 'word':
-            downloadWord(fileName, html, login, servers);
+            downloadWord(fileName, html);
             break;
           case 'markdown':
             downloadMarkdown(fileName, html);
