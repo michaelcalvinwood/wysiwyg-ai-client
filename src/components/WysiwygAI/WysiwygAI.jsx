@@ -100,14 +100,18 @@ function WysiwygAI({content, setContent, handleClose}) {
   const handleExitFullScreen = () => setFullsize(false);
 
   /**
-   * Example prompts and alerts
+   * Examples
    */
 
   useEffect(() => {
-    // Example Jodit Prompt
+    /**
+     * Example Jodit prompt
+     */
     joditPrompt(Jodit, "Example Title", "Example Instructions", (value) => {
-      alert(value)
-    }, 'Example Placeholder', 'Example Default Value')
+      console.log(value);
+    }, 'Example Placeholder', 'Example Default Value');
+
+    
   })
 
   /**
