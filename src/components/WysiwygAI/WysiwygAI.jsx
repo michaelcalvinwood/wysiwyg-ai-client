@@ -14,6 +14,7 @@ import groupToButtonList from './utils/groupToButtonList';
 import { addChatButton } from './utils/addChatButton';
 import { addFullScreenButton } from './utils/addFullScreenButton';
 import { addExitFullscreenButton } from './utils/addExitFullScreenButton';
+import { joditPrompt } from './utils/prompt';
 
 function WysiwygAI({content, setContent, handleClose}) {
   const [ fullsize, setFullsize ] = useState(false);
@@ -39,7 +40,7 @@ function WysiwygAI({content, setContent, handleClose}) {
   /**
    * Button Handlers
    */
-  const handleChat = async ({id, command, chatbotId, editor}) => {
+  const handleChat = async ({id, command, chatbotId, editor, close}) => {
     // const request = {
     //   url: settings.backend + '/ai-stream',
     //   method: 'post',
@@ -97,6 +98,17 @@ function WysiwygAI({content, setContent, handleClose}) {
   const handleFullScreen = () => setFullsize(true);
 
   const handleExitFullScreen = () => setFullsize(false);
+
+  /**
+   * Example prompts and alerts
+   */
+
+  useEffect(() => {
+    // Example Jodit Prompt
+    joditPrompt(Jodit, "Example Title", "Example Instructions", (value) => {
+      alert(value)
+    }, 'Example Placeholder', 'Example Default Value')
+  })
 
   /**
    * Toggle display of fullScreen / exitFullScreen buttons
