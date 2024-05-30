@@ -17,14 +17,15 @@ export const addChatButton = (Jodit, handleChat) => {
       </form>`
     );
 
+    console.log('close', close);
     editor.e.on(form, 'submit', (e) => {
       e.preventDefault();
+      console.log('close2', close)
       const command = form.querySelector('textarea').value;
       const select = form.querySelector('select');
       const chatbotId = select.value;
 
       const id = `id_${uuidv4()}`;
-      close();
       editor.s.insertHTML(`<stream id="${id}"></stream>`);
       handleChat({id, command, chatbotId})
       

@@ -2,6 +2,8 @@ import './WysiwygAi.scss';
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import JoditEditor, { Jodit, Popup } from "jodit-pro-react";
 import configPro from './configPro';
+import settings from './settings.json';
+import axios from 'axios';
 
 /**
  * Utilities
@@ -32,11 +34,51 @@ function WysiwygAI({content, setContent, handleClose}) {
       []
   );
 
+  const hello = (data) => console.log(data);
+
   /**
    * Button Handlers
    */
-  const handleChat = ({id, command, chatbotId}) => {
+  const handleChat = async ({id, command, chatbotId}) => {
+    // const request = {
+    //   url: settings.backend + '/ai-stream',
+    //   method: 'post',
+    //   responseType: 'stream',
+    //   data: {
+    //     query: command
+    //   }
+    // }
+    // axios(request)
+    // .then(response => response.data.on(hello))
 
+    try {
+      const query = { query: command }; // Replace 'your_query_here' with your actual query
+      const response = await fetch(settings.backend + '/ai-stream', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(query),
+      });
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      const processStream = async () => {
+        let done, value;
+        while (!done) {
+          ({ done, value } = await reader.read());
+          if (value) {
+            console.log(decoder.decode(value, { stream: true }));
+          }
+        }
+      };
+
+      processStream();
+    } catch (error) {
+      console.error('Error fetching stream:', error);
+    }
+    
   }
 
   const handleFullScreen = () => setFullsize(true);
