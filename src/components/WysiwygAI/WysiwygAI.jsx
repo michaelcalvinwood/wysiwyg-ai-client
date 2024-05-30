@@ -18,6 +18,9 @@ import { joditPrompt } from './utils/prompt';
 import { addDownloadButton } from './utils/addDownloadButton';
 
 function WysiwygAI({content, setContent, handleClose}) {
+  const showExamples = false;
+
+  
   const [ fullsize, setFullsize ] = useState(false);
   const [ editorInstance, setEditorInstance] = useState(null);
 
@@ -108,9 +111,11 @@ function WysiwygAI({content, setContent, handleClose}) {
     /**
      * Example Jodit prompt
      */
-    joditPrompt(Jodit, "Example Title", "Example Instructions", (value) => {
-      console.log(value);
-    }, 'Example Placeholder', 'Example Default Value');
+    if (showExamples) {
+      joditPrompt(Jodit, "Example Title", "Example Instructions", (value) => {
+        console.log(value);
+      }, 'Example Placeholder', 'Example Default Value');
+    }
 
     
   })

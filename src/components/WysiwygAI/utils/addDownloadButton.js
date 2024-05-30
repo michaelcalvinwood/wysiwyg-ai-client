@@ -3,6 +3,7 @@ import * as htmlToText from 'html-to-text';
 import * as textFormatter from './textFormatter';
 import { registerButton } from './registerButton';
 import { joditAlert } from './alert';
+import settings from '../settings.json';
 
 const downloadHtml = (fileName, content) => {
     const title = fileName;
@@ -23,6 +24,25 @@ ${content}
     
     fileDownload(html, fileName)
 
+  }
+
+  const downloadButtonForm = () => {
+    return `
+    <form class="acuchat_download_container">
+      <h3 class="acuchat_download_title">Export</h3>
+      
+        <select class="acuchat_download_select" value="html">
+        <option value="html">HTML</option>
+        <option value="word">Microsoft Word</option>
+        <option value="pdf">PDF</option>
+        <option value="markdown">Markdown</option>
+        <option value="text">Text</option>
+        </select>
+        <input class="acuchat_download_filename" type="text" placeholder="File Name"/>
+        <button class="acuchat_download_button" type="submit">Download</button>
+      
+    </form>
+    `
   }
 
   const downloadWord = async (fileName, html) => {
@@ -61,10 +81,10 @@ ${content}
   export const addDownloadButton = (Jodit) => {
     const name = "download";
     const tooltip = "Download";
-    const iconURL = './src/assets/images/download.svg';
+    const iconURL = settings.svgFolder + '/download.svg';
     const exec = null;
     const popup = (editor, current, self, close) => {
-      const form = editor.create.fromHTML(shortCodes.downloadButtonForm());
+      const form = editor.create.fromHTML(downloadButtonForm());
       console.log('form', form)
       editor.e.on(form, 'submit', (e) => {
         e.preventDefault();
