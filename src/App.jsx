@@ -8,11 +8,16 @@ import { counterDecrement, counterIncrement, counterSetValue } from './store/sli
 import WysiwygAI from './components/WysiwygAI/WysiwygAI';
 
 function App() {
-  const dispatch = useDispatch();
-  const count = useSelector(state => state.counter)
+  const [content, setContent] = useState('');
+
+  const setTheContent = theContent => {
+    console.log('setTheContent', theContent);
+    setContent(theContent)
+  }
+
   return (
     <div className='App'>
-      <WysiwygAI />
+      <WysiwygAI content={content} setContent={setTheContent}/>
     </div>
   )
 }

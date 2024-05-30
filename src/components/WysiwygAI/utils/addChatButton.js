@@ -9,7 +9,7 @@ export const addChatButton = (Jodit, handleChat) => {
   const exec = null;
   const popup = (editor, current, self, close) => {
     const form = editor.create.fromHTML(
-      `<form class='jodit-chat-input'>
+      `<form class='jodit-chat-input' style="display: block">
         <select id="chatbotSelect" >
         </select>
         <textarea rows=5 placeholder="ChatGPT Prompt" style="width: 30rem; display: block; padding: .5rem 1rem;"></textarea>
@@ -17,7 +17,6 @@ export const addChatButton = (Jodit, handleChat) => {
       </form>`
     );
 
-    console.log('close', close);
     editor.e.on(form, 'submit', (e) => {
       e.preventDefault();
       console.log('close2', close)
@@ -26,8 +25,13 @@ export const addChatButton = (Jodit, handleChat) => {
       const chatbotId = select.value;
 
       const id = `id_${uuidv4()}`;
-      editor.s.insertHTML(`<stream id="${id}"></stream>`);
-      handleChat({id, command, chatbotId})
+    
+      //editor.setEditorValue(editor.editorDocument.body.innerHTML);
+      //editor.setEditorValue(`<div id="new">Hello</div>`);
+      
+      handleChat({id, command, chatbotId, editor})
+      //alert('done');
+      form.style.display="none";
       
     });
 

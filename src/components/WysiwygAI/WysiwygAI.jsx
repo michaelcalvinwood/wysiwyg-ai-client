@@ -39,7 +39,7 @@ function WysiwygAI({content, setContent, handleClose}) {
   /**
    * Button Handlers
    */
-  const handleChat = async ({id, command, chatbotId}) => {
+  const handleChat = async ({id, command, chatbotId, editor}) => {
     // const request = {
     //   url: settings.backend + '/ai-stream',
     //   method: 'post',
@@ -50,6 +50,11 @@ function WysiwygAI({content, setContent, handleClose}) {
     // }
     // axios(request)
     // .then(response => response.data.on(hello))
+
+    editor.s.insertHTML(`<div id="${id}"></div>`);
+    var currentHtml = editor.getEditorValue();
+    setContent(currentHtml);
+    const el = document.getElementById(id);
 
     try {
       const query = { query: command }; // Replace 'your_query_here' with your actual query
@@ -69,9 +74,14 @@ function WysiwygAI({content, setContent, handleClose}) {
         while (!done) {
           ({ done, value } = await reader.read());
           if (value) {
-            console.log(decoder.decode(value, { stream: true }));
+            let token = decoder.decode(value, { stream: true });
+            const newHtml = el.innerHTML + token;
+            el.innerHTML = newHtml;
+            // currentHtml = editor.getEditorValue();
+            // console.log('current', currentHtml)
           }
         }
+        
       };
 
       processStream();
@@ -132,7 +142,7 @@ function WysiwygAI({content, setContent, handleClose}) {
                 config={config3}
                 tabIndex={1} // tabIndex of textarea
                 onBlur={setContent}
-                //onChange={setContent}
+                onChange={setContent}
                 
             />
     </div>
