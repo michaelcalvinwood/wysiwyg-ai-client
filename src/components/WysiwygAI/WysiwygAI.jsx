@@ -23,6 +23,9 @@ function WysiwygAI({content, setContent, handleClose}) {
   
   const [ fullsize, setFullsize ] = useState(false);
   const [ editorInstance, setEditorInstance] = useState(null);
+  const [ streams, setStreams ] = useState({});
+
+  console.log('streams', streams);
 
   const origButtons = [...Jodit.defaultOptions.buttons];
   console.log('origButtons', origButtons)
@@ -41,28 +44,35 @@ function WysiwygAI({content, setContent, handleClose}) {
 
   const hello = (data) => console.log(data);
 
+  function detectContentType(input) {
+      // Regular expressions for HTML and Markdown
+      const htmlRegex = /<([a-z]+)([^<]+)*(?:>(.*)<\/\1>|\s+\/>)/i;
+      const markdownRegex = /(\*|_){1,2}[^*_]+\1{1,2}|\[[^\]]+\]\([^\)]+\)|`[^`]+`|^#{1,6}\s.+/m;
+
+      // Check for HTML
+      if (htmlRegex.test(input)) {
+          return 'html';
+      }
+
+      // Check for Markdown
+      if (markdownRegex.test(input)) {
+          return 'markdown';
+      }
+
+      // Default to plaintext
+      return 'plaintext';
+  }
+
   /**
    * Button Handlers
    */
-  const handleChat = async ({id, command, chatbotId, editor, close}) => {
-    // const request = {
-    //   url: settings.backend + '/ai-stream',
-    //   method: 'post',
-    //   responseType: 'stream',
-    //   data: {
-    //     query: command
-    //   }
-    // }
-    // axios(request)
-    // .then(response => response.data.on(hello))
+  const handleChat = async ({id, command}) => {
 
-    editor.events.fire('closeAllPopupsAndModals');
-
-
-    editor.s.insertHTML(`<div id="${id}"></div>`);
-    var currentHtml = editor.getEditorValue();
-    setContent(currentHtml);
-    const el = document.getElementById(id);
+    setStreams(state => {
+      state[id] = '';
+      return state
+    });
+    //const el = document.getElementById(id);
 
     try {
       const query = { query: command }; // Replace 'your_query_here' with your actual query
@@ -83,8 +93,12 @@ function WysiwygAI({content, setContent, handleClose}) {
           ({ done, value } = await reader.read());
           if (value) {
             let token = decoder.decode(value, { stream: true });
-            const newHtml = el.innerHTML + token;
-            el.innerHTML = newHtml;
+            setStreams(state => {
+              state[id] = state[id] + token;
+              return state;
+            })
+            //const newHtml = el.innerHTML + token;
+            //el.innerHTML = newHtml;
             // currentHtml = editor.getEditorValue();
             // console.log('current', currentHtml)
           }

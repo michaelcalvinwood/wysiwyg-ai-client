@@ -4,8 +4,8 @@ export const adjustIframeDimensions = (width, editor) => {
     const iframe = document.querySelector('iframe');
     iframe.style.minWidth = '900px';
     iframe.style.width = '900px';
-
 }
+
 export const addLinkToHeader = (editor, link) => {
     if (!editor) return;
     const doc = editor.editorDocument;
