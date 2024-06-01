@@ -118,6 +118,26 @@ function WysiwygAI({content, setContent, handleClose}) {
   const handleExitFullScreen = () => setFullsize(false);
 
   /**
+   * Process Streams
+   */
+
+  useEffect(() => {
+    setInterval(() => {
+      const entries = Object.entries(streams);
+      console.log('entries', entries);
+      entries.forEach(entry => {
+        const text = entry[1];
+        const el = document.getElementById(entry[0]);
+        if (!el) return;
+        const target = text;
+        if (el.innerHTML !== target) el.innerHTML = target;
+      }, 500)
+    })
+
+
+  })
+
+  /**
    * Examples
    */
 
