@@ -66,12 +66,12 @@ export const addChatButton = (Jodit, handleChat) => {
       const chatbotId = select.value;
 
       const id = `id_${uuidv4()}`;
-    
+      console.log('chatbot', chatbotId);
       //editor.setEditorValue(editor.editorDocument.body.innerHTML);
       //editor.setEditorValue(`<div id="new">Hello</div>`);
       editor.s.insertHTML(`<div id="${id}"></div>`);
     
-      handleChat({id, command, chatbotId})
+      handleChat({id, command, model: chatbotId})
       const el = document.querySelector('.jodit-toolbar-button_chat');
       const button = el.querySelector('button');
       if (el && button) button.click();

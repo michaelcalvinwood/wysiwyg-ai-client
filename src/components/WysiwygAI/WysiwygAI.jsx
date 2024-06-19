@@ -16,6 +16,7 @@ import { addFullScreenButton } from './utils/addFullScreenButton';
 import { addExitFullscreenButton } from './utils/addExitFullScreenButton';
 import { joditPrompt } from './utils/prompt';
 import { addDownloadButton } from './utils/addDownloadButton';
+import showdown from 'showdown';
 
 function WysiwygAI({content, setContent, handleClose}) {
   const showExamples = false;
@@ -66,7 +67,7 @@ function WysiwygAI({content, setContent, handleClose}) {
   /**
    * Button Handlers
    */
-  const handleChat = async ({id, command}) => {
+  const handleChat = async ({id, command, model}) => {
 
     setStreams(state => {
       state[id] = '';
@@ -75,7 +76,8 @@ function WysiwygAI({content, setContent, handleClose}) {
     //const el = document.getElementById(id);
 
     try {
-      const query = { query: command }; // Replace 'your_query_here' with your actual query
+      const query = { query: command, model }; // Replace 'your_query_here' with your actual query
+      console.log('query', query);
       const response = await fetch(settings.backend + '/ai-stream', {
         method: 'POST',
         headers: {
@@ -124,13 +126,30 @@ function WysiwygAI({content, setContent, handleClose}) {
   useEffect(() => {
     setInterval(() => {
       const entries = Object.entries(streams);
-      console.log('entries', entries);
+      if (!entries.length) return;
+      const converter = new showdown.Converter()
+      
       entries.forEach(entry => {
-        const text = entry[1];
+        let text = entry[1];
+        const contentType = detectContentType(text);
+        const done = text.endsWith('[[DONE]]');
+        if (done) text = text.substring(0, text.length - 8);
         const el = document.getElementById(entry[0]);
         if (!el) return;
-        const target = text;
-        if (el.innerHTML !== target) el.innerHTML = target;
+        let target = '';
+        switch (contentType) {
+          case 'markdown':
+            target = converter.makeHtml(text);
+            break;
+          default:
+            target = text;
+        }
+        console.log('target', target);
+        el.innerHTML = target;
+        if (done) setStreams(state => {
+          delete state[entry[0]];
+          return state;
+        })
       }, 500)
     })
 
